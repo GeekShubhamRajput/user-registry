@@ -4,4 +4,6 @@ class Coordinator < ApplicationRecord
   validates :email, uniqueness: true
   
   has_and_belongs_to_many :registries
+  has_many :enrollments
+  has_many :participants, through: :enrollments
 end

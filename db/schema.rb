@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_20_174734) do
-  create_table "coordinators", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2023_06_20_185334) do
+  create_table "coordinators", charset: "utf8", force: :cascade do |t|
     t.string "email"
     t.string "name"
     t.string "phone_number"
@@ -19,14 +19,36 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_174734) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "coordinators_registries", id: false, force: :cascade do |t|
-    t.integer "registry_id", null: false
-    t.integer "coordinator_id", null: false
+  create_table "coordinators_registries", id: false, charset: "utf8", force: :cascade do |t|
+    t.bigint "registry_id", null: false
+    t.bigint "coordinator_id", null: false
     t.index ["coordinator_id", "registry_id"], name: "index_coordinators_registries_on_coordinator_id_and_registry_id"
     t.index ["registry_id", "coordinator_id"], name: "index_coordinators_registries_on_registry_id_and_coordinator_id"
   end
 
-  create_table "registries", force: :cascade do |t|
+  create_table "enrollments", charset: "utf8", force: :cascade do |t|
+    t.datetime "date_of_enrollment"
+    t.string "method_of_contact"
+    t.text "remarks"
+    t.bigint "coordinator_id", null: false
+    t.bigint "registry_id", null: false
+    t.bigint "participant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coordinator_id"], name: "index_enrollments_on_coordinator_id"
+    t.index ["participant_id"], name: "index_enrollments_on_participant_id"
+    t.index ["registry_id"], name: "index_enrollments_on_registry_id"
+  end
+
+  create_table "participants", charset: "utf8", force: :cascade do |t|
+    t.string "name"
+    t.integer "gender"
+    t.datetime "date_of_birth"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "registries", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.string "location"
     t.boolean "state", default: true
@@ -34,4 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_174734) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "enrollments", "coordinators"
+  add_foreign_key "enrollments", "participants"
+  add_foreign_key "enrollments", "registries"
 end

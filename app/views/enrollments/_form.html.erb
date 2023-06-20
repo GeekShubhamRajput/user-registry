@@ -1,0 +1,47 @@
+<%= form_with(model: enrollment) do |form| %>
+  <% if enrollment.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(enrollment.errors.count, "error") %> prohibited this enrollment from being saved:</h2>
+
+      <ul>
+        <% enrollment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :date_of_enrollment, style: "display: block" %>
+    <%= form.datetime_field :date_of_enrollment %>
+  </div>
+
+  <div>
+    <%= form.label :method_of_contact, style: "display: block" %>
+    <%= form.text_field :method_of_contact %>
+  </div>
+
+  <div>
+    <%= form.label :remarks, style: "display: block" %>
+    <%= form.text_area :remarks %>
+  </div>
+
+  <div>
+    <%= form.label :coordinator_id, style: "display: block" %>
+    <%= form.text_field :coordinator_id %>
+  </div>
+
+  <div>
+    <%= form.label :registry_id, style: "display: block" %>
+    <%= form.text_field :registry_id %>
+  </div>
+
+  <div>
+    <%= form.label :participant_id, style: "display: block" %>
+    <%= form.text_field :participant_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

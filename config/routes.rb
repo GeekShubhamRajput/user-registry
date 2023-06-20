@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :coordinators
   resources :registries
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :coordinators
+  resources :participants
+  resources :enrollments
+  get 'home/index'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root 'home#index'
 end
