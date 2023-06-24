@@ -3,8 +3,7 @@
 <%= render @coordinator %>
 
 <div>
-  <%= link_to "Edit this coordinator", edit_coordinator_path(@coordinator) %> |
-  <%= link_to "Back to coordinators", coordinators_path %>
-
-  <%= button_to "Destroy this coordinator", @coordinator, method: :delete %>
+  <%= link_to "Edit", edit_coordinator_path(@coordinator) %> |
+  <%= link_to "Back", coordinators_path %> |
+  <%= link_to "Destroy", @coordinator, method: :delete %>
 </div>

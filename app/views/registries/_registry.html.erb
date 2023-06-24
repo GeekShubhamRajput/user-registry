@@ -1,4 +1,10 @@
 <div id="<%= dom_id registry %>">
+  <div>
+    <%= link_to "Edit", edit_registry_path(@registry) %> |
+    <%= link_to "Back", registries_path %> |
+    <%= link_to "Destroy", @registry, method: :delete %>
+  </div>
+
   <p>
     <strong>Name:</strong>
     <%= registry.name %>
@@ -11,7 +17,31 @@
 
   <p>
     <strong>State:</strong>
-    <%= registry.state %>
+    <%= registry_state(registry.state) %>
   </p>
+
+  <div id="coordinators">
+    <h2>Coordinators</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @coordinators.each do |coordinator| %>
+          <tr>
+            <td><%= coordinator.name %></td>
+            <td><%= coordinator.email %></td>
+            <td><%= coordinator.phone_number %></td>
+            <td><%= link_to "Show", coordinator %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
 </div>

@@ -27,6 +27,12 @@
   </div>
 
   <div>
+    <%= form.label :registry_id, style: "display: block" %>
+    <%= form.select :registry_id, options_for_registries_select(@registries) %>
+
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

@@ -1,13 +1,12 @@
 class RegistriesController < ApplicationController
   before_action :set_registry, only: %i[ show edit update destroy ]
 
-  # GET /registries or /registries.json
   def index
     @registries = Registry.all
   end
 
-  # GET /registries/1 or /registries/1.json
   def show
+    @coordinators = @registry.coordinators
   end
 
   # GET /registries/new
@@ -25,7 +24,7 @@ class RegistriesController < ApplicationController
 
     respond_to do |format|
       if @registry.save
-        format.html { redirect_to registry_url(@registry), notice: "Registry was successfully created." }
+        format.html { redirect_to registries_url, notice: "Registry was successfully created." }
         format.json { render :show, status: :created, location: @registry }
       else
         format.html { render :new, status: :unprocessable_entity }

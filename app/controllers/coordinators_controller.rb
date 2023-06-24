@@ -12,11 +12,13 @@ class CoordinatorsController < ApplicationController
 
   # GET /coordinators/new
   def new
+    @registries = Registry.open_state
     @coordinator = Coordinator.new
   end
 
   # GET /coordinators/1/edit
   def edit
+    @registries = Registry.open_state
   end
 
   # POST /coordinators or /coordinators.json
@@ -65,6 +67,6 @@ class CoordinatorsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def coordinator_params
-      params.require(:coordinator).permit(:email, :name, :phone_number)
+      params.require(:coordinator).permit(:email, :name, :phone_number, :registry_id)
     end
 end

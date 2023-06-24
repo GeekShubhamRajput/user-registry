@@ -1,14 +1,25 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Registries</h1>
-
 <div id="registries">
-  <% @registries.each do |registry| %>
-    <%= render registry %>
-    <p>
-      <%= link_to "Show this registry", registry %>
-    </p>
-  <% end %>
+  <h2>Registries</h2>
+  <%= link_to "New registry", new_registry_path %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @registries.each do |registry| %>
+        <tr>
+          <td><%= registry.name %></td>
+          <td><%= registry.location %></td>
+          <td><%= link_to "Show", registry %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
-<%= link_to "New registry", new_registry_path %>
