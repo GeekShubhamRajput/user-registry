@@ -28,7 +28,7 @@
 
   <div>
     <%= form.label :registry_id, style: "display: block" %>
-    <%= form.select :registry_id, options_for_registries_select(@registries) %>
+    <%= form.select :registry_id, options_for_registries_select(@registries), { multiple: true } %>
 
   </div>
 

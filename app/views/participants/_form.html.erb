@@ -1,32 +1,38 @@
-<%= form_with(model: participant) do |form| %>
-  <% if participant.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(participant.errors.count, "error") %> prohibited this participant from being saved:</h2>
+<div class="row">
+  <div class="col-6">
+    <%= form_with(model: participant) do |form| %>
+      <% if participant.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(participant.errors.count, "error") %> prohibited this participant from being saved:</h2>
 
-      <ul>
-        <% participant.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% participant.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+      <div class="form-group">
+        <%= form.label :name, style: "display: block" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :gender, style: "display: block" %>
+        <%= form.select :gender, Participant.genders.keys, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :date_of_birth, style: "display: block" %>
+        <%= form.date_field :date_of_birth, class: "form-control" %>
+      </div>
+      <br />
+      <div>
+        <%= form.submit 'Create Participant', class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
-
-  <div>
-    <%= form.label :gender, style: "display: block" %>
-    <%= form.number_field :gender %>
+  <div class="col-6">
   </div>
-
-  <div>
-    <%= form.label :date_of_birth, style: "display: block" %>
-    <%= form.datetime_field :date_of_birth %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
