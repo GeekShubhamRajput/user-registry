@@ -20,7 +20,7 @@
 
       <div class="form-group">
         <%= form.label :method_of_contact, style: "display: block" %>
-        <%= form.text_field :method_of_contact, class: "form-control" %>
+        <%= form.select :method_of_contact, contact_method_options %>
       </div>
  
       <div class="form-group">
